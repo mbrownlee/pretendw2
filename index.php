@@ -43,19 +43,31 @@
         //             echo $row['name'] . "</br>";
         //         } 
         //     } } while ($num_rows > 0);
-            }
-        do{
-            $query = $db->query("SELECT * FROM tempW2 WHERE done=0 LIMIT 200");
-            $result = mysqli_query($init, $sql);
-            $num_rows = mysqli_num_rows($result);
-            if ($num_rows > 0){
-                while($row = $result->fetch_array()){
-                $unencryptSSN = $data['SSN'];
-                $year = $data['W2Year'];
-                $db->query("UPDATE tempW2 SET SSN='".encrypt($data['SSN'],$key,$iv,$bit_check)."', done=1 WHERE SSN='$unencryptSSN'");
-            } } } while ($num_rows > 0);
-            
-
+        // do{
+            //     $query = $db->query("SELECT * FROM tempW2 WHERE done=0 LIMIT 200");
+            //     $result = mysqli_query($init, $sql);
+            //     $num_rows = mysqli_num_rows($result);
+            //     if ($num_rows > 0){
+                //         while($row = $result->fetch_array()){
+                    //         $unencryptSSN = $data['SSN'];
+                    //         $year = $data['W2Year'];
+                    //         $db->query("UPDATE tempW2 SET SSN='".encrypt($data['SSN'],$key,$iv,$bit_check)."', done=1 WHERE SSN='$unencryptSSN'");
+                    //     } } } while ($num_rows > 0);
+                    
+                    do{
+                        $sql = "SELECT * FROM pretendw2 WHERE SSN != 0 LIMIT 5";
+                        // $result = mysqli_query($init, $sql);
+                        $num_rows = mysqli_num_rows($result = mysqli_query($init, $sql));
+                        if ($num_rows > 0){
+                            while($row = $result->fetch_array()){
+                                $unencryptSSN = $row['SSN'];
+                                // $year = $data['W2Year'];
+                                echo $row['name'] . $row['SSN'] . " " . "hi Mac Daddy" . "</br>";
+                                $query = "UPDATE pretendw2 SET SSN=0 WHERE SSN='$unencryptSSN'";
+                                $result2 = mysqli_query($init, $query);
+                                
+                            } echo $num_rows; } } while ($num_rows > 0);
+                        }
 
     ?>
 </body>
